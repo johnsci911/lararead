@@ -85,7 +85,7 @@
                 >
                     <form action="#" class="space-y-4 px-4 py-6">
                         <div>
-                            <textarea id="post_comment" name="post_comment" cols="30" rows="4" class="w-full text-sm bg-gray-100 rounded-xl placeholder-gray-900 border-none px-4 py-2" placeholder="go ahead, don't be shy. share your thoughts..."></textarea>
+                            <textarea id="post_comment" name="post_comment" cols="30" rows="4" class="w-full text-sm font-normal bg-gray-100 rounded-xl placeholder-gray-900 border-none px-4 py-2" placeholder="Go ahead, don't be shy. share your thoughts..."></textarea>
                         </div>
                         <div class="flex items-center space-x-3">
                             <button
@@ -164,7 +164,7 @@
                             </div>
                         </div>
                         <div>
-                            <textarea id="update_comment" name="update_comment" cols="30" rows="3" class="w-full text-sm bg-gray-100 rounded-xl placeholder-gray-900 border-none px-4 py-2" placeholder="Add and update comment (optional)"></textarea>
+                            <textarea id="update_comment" name="update_comment" cols="30" rows="3" class="w-full text-sm font-normal bg-gray-100 rounded-xl placeholder-gray-900 border-none px-4 py-2" placeholder="Add and update comment (optional)"></textarea>
                         </div>
                         <div class="flex items-center space-x-3">
                             <button
