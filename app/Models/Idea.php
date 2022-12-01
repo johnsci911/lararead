@@ -11,6 +11,8 @@ class Idea extends Model
     use HasFactory;
     use Sluggable;
 
+    const PAGINATION_COUNT = 10;
+
     protected $guarded = [];
 
     public function user()
@@ -23,6 +25,7 @@ class Idea extends Model
         return [
             'slug' => [
                 'source' => 'title',
+                'firstUniqueSuffix' => 1,
             ]
         ];
     }
