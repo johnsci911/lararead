@@ -10,9 +10,9 @@
 
     <div class="idea-container bg-white rounded-xl flex mt-4">
         <div class="flex flex-col md:flex-row flex-1 px-4 py-6">
-            <div class="flex-none mx-2 md:mx-4 md:mx-0">
+            <div class="flex-none mx-2 md:mx-0">
                 <a href="#" class="flex-none">
-                    <img src="https://source.unsplash.com/200x200/?face&crop=face&v=1" alt="avatar" class="w-14 h-14 rounded-xl">
+                    <img src="{{ $idea->user->getAvatar() }}" alt="avatar" class="w-14 h-14 rounded-xl">
                 </a>
             </div>
             <div class="w-full mx-2 md:mx-4">
@@ -57,7 +57,7 @@
                         </button>
                     </div>
 
-                    <div class="flex md:hidden items-center md:hidden mt-4 md:mt-0">
+                    <div class="flex md:hidden items-center mt-4 md:mt-0">
                         <div class="bg-gray-100 text-center rounded-xl h-10 px-4 py-2 pr-8">
                             <div class="text-sm font-bold leading-none">12</div>
                             <div class="text-xxs font-semibold leading-none text-gray-400">Votes</div>
@@ -224,7 +224,7 @@
             <div class="flex flex-col md:flex-row flex-1 px-4 py-6">
                 <div class="flex-none">
                     <a href="#" class="flex-none">
-                        <img src="https://source.unsplash.com/200x200/?face&crop=face&v=4" alt="avatar" class="w-14 h-14 rounded-xl">
+                        <img src="{{ $idea->user->getAvatar() }}" alt="avatar" class="w-14 h-14 rounded-xl">
                     </a>
                 </div>
                 <div class="w-full md:mx-4">
@@ -256,7 +256,7 @@
             <div class="flex flex-col md:flex-row flex-1 px-4 py-6">
                 <div class="flex-none">
                     <a href="#" class="flex-none">
-                        <img src="https://source.unsplash.com/200x200/?face&crop=face&v=2" alt="avatar" class="w-14 h-14 rounded-xl">
+                        <img src="{{ $idea->user->getAvatar() }}" alt="avatar" class="w-14 h-14 rounded-xl">
                     </a>
                     <div class="px-2 md:px-0 md:text-center text-blue uppercase text-xxs font-bold mt-1">Admin</div>
                 </div>
@@ -289,7 +289,7 @@
                                     x-transition.origin.top.left
                                     @click.away="isOpen = false"
                                     @keydown.escape.window="isOpen = false"
-                                    class="absolute z-10 w-44 text-left font-semibold bg-white shadow-dialog rounded-xl py-3 z-10 md:ml-8 top-8 md:top-6 right-0 md:left-0"
+                                    class="absolute z-10 w-44 text-left font-semibold bg-white shadow-dialog rounded-xl py-3 md:ml-8 top-8 md:top-6 right-0 md:left-0"
                                 >
                                     <li><a href="#" class="hover:bg-gray-100 block px-5 py-3 transition duration-150 ease-in">Mark as Spam</a></li>
                                     <li><a href="#" class="hover:bg-gray-100 block px-5 py-3 transition duration-150 ease-in">Delete Post</a></li>
@@ -305,7 +305,7 @@
             <div class="flex flex-col md:flex-row flex-1 px-4 py-6">
                 <div class="flex-none">
                     <a href="#" class="flex-none">
-                        <img src="https://source.unsplash.com/200x200/?face&crop=face&v=4" alt="avatar" class="w-14 h-14 rounded-xl">
+                        <img src="{{ $idea->user->getAvatar() }}" alt="avatar" class="w-14 h-14 rounded-xl">
                     </a>
                 </div>
                 <div class="w-full md:mx-4">
