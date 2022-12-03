@@ -71,31 +71,32 @@ class ShowIdeaTest extends TestCase
     /** @test */
     public function ideas_pagination_works()
     {
-        Idea::factory(Idea::PAGINATION_COUNT + 1)->create();
+        $categoryOne = Category::factory()->create(['name' => 'Category 1']);
 
-        $category = Category::factory()->create([
-            'name' => 'Category One'
+        $statusOpen = Status::factory()->create(['name' => 'Open', 'classes' => 'bg-gray-200']);
+
+        Idea::factory(Idea::PAGINATION_COUNT + 1)->create([
+            'category_id' => $categoryOne->id,
+            'status_id' => $statusOpen->id,
         ]);
 
         $ideaOne = Idea::find(1);
         $ideaOne->title = 'My First Idea';
-        $ideaOne->category_id = $category;
         $ideaOne->save();
 
-        $ideaTwo = Idea::find(Idea::PAGINATION_COUNT + 1);
-        $ideaTwo->title = 'My Second Idea';
-        $ideaTwo->category_id = $category;
-        $ideaTwo->save();
+        $ideaEleven = Idea::find(11);
+        $ideaEleven->title = 'My Eleventh Idea';
+        $ideaEleven->save();
 
         $response = $this->get('/');
 
         $response->assertSee($ideaOne->title);
-        // $response->assertDontSee($ideaTwo->title);
+        $response->assertDontSee($ideaEleven->title);
 
         $response = $this->get('/?page=2');
 
-        $response->assertSee($ideaTwo->title);
-        // $response->assertDontSee($ideaOne->title);
+        $response->assertSee($ideaEleven->title);
+        $response->assertDontSee($ideaOne->title);
     }
 
     /** @test */
