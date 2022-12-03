@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Models\Category;
 use App\Models\Idea;
+use App\Models\Status;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -17,15 +18,20 @@ class ShowIdeaTest extends TestCase
         $categoryOne = Category::factory()->create(['name' => 'Category 1']);
         $categoryTwo = Category::factory()->create(['name' => 'Category 2']);
 
+        $statusOpen = Status::factory()->create(['name' => 'Open', 'classes' => 'bg-gray-200']);
+        $statusConsidering = Status::factory()->create(['name' => 'Considering', 'classes' => 'bg-purple text-white']);
+
         $ideaOne = Idea::factory()->create([
             'title' => 'My first idea',
             'category_id' => $categoryOne,
+            'status_id' => $statusOpen,
             'description' => 'Description of my first idea',
         ]);
 
         $ideaTwo = Idea::factory()->create([
             'title' => 'My second idea',
             'category_id' => $categoryTwo,
+            'status_id' => $statusConsidering,
             'description' => 'Description of my second idea',
         ]);
 
@@ -35,17 +41,22 @@ class ShowIdeaTest extends TestCase
         $response->assertSee($ideaOne->title);
         $response->assertSee($ideaOne->description);
         $response->assertSee($categoryOne->name);
+        $response->assertSee('<div class="bg-gray-200 text-xxs font-bold uppercase leading-none rounded-full text-center w-28 h-7 py-2 px-4">Open</div>', false);
         $response->assertSee($ideaTwo->title);
         $response->assertSee($ideaTwo->description);
         $response->assertSee($categoryTwo->name);
+        $response->assertSee('<div class="bg-purple text-white text-xxs font-bold uppercase leading-none rounded-full text-center w-28 h-7 py-2 px-4">Considering</div>', false);
     }
 
     /** @test */
     public function single_ideas_shows_correctly_on_show_page()
     {
+        $statusOpen = Status::factory()->create(['name' => 'Open', 'classes' => 'bg-gray-200']);
+
         $idea = Idea::factory()->create([
             'title' => 'My idea',
             'category_id' => Category::factory()->create(),
+            'status_id' => $statusOpen,
             'description' => 'Description of my idea',
         ]);
 
@@ -54,6 +65,7 @@ class ShowIdeaTest extends TestCase
         $response->assertSuccessful();
         $response->assertSee($idea->title);
         $response->assertSee($idea->description);
+        $response->assertSee('<div class="bg-gray-200 text-xxs font-bold uppercase leading-none rounded-full text-center w-28 h-7 py-2 px-4">Open</div>', false);
     }
 
     /** @test */
@@ -90,16 +102,19 @@ class ShowIdeaTest extends TestCase
     public function same_idea_title_different_slugs()
     {
         $category = Category::factory()->create();
+        $statusOpen = Status::factory()->create(['name' => 'Open', 'classes' => 'bg-gray-200']);
 
         $ideaOne = Idea::factory()->create([
             'title' => 'My First Idea',
             'category_id' => $category,
+            'status_id' => $statusOpen,
             'description' => 'Description for my first idea',
         ]);
 
         $ideaTwo = Idea::factory()->create([
             'title' => 'My First Idea',
             'category_id' => $category,
+            'status_id' => $statusOpen,
             'description' => 'Description for my second idea',
         ]);
 
